@@ -23,11 +23,7 @@ public class ActionsManager {
 	ActionListener getUserDataListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			logger.info("UPDATING DATA FROM MENU: ...");
-            try {
-                dataManager.getData(getChessDotComUserName());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+			dataManager.getData(getChessDotComUserName());
         }
 	};
 

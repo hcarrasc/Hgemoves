@@ -16,11 +16,7 @@ public class TimerUpdater {
 		TimerTask task = new TimerTask(){
 		    @Override
 		    public void run() {
-				try {
-					dataManager.getData(chessDotComUser);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		    	dataManager.getData(chessDotComUser);
 			}
 		};
 		temporizer.schedule (task,delay,interval);
