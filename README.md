@@ -1,4 +1,4 @@
-# Hgemoves
+# Hgemovs
 Menu bar application for mac osx, which lets you know if you have pending movements in daily games played on Chess.com
 
 ### Preview:
