@@ -22,13 +22,13 @@ public class SetupApp {
         String selection = JOptionPane.showInputDialog( "Who are you in chess.com?");
         actions.setChessDotComUserName(selection);
 		
-		TimerUpdater timer = new TimerUpdater();
-		timer.updateDataRobot(selection);
-		
+		//TimerUpdater timer = new TimerUpdater();
+		//timer.updateDataRobot(selection);
+				
         SystemTray tray = SystemTray.getSystemTray();
         Image image = Toolkit.getDefaultToolkit().getImage(SetupApp.class.getResource("/WhiteKnight.png"));
 
-		MenuItem getUserDataItem = new MenuItem("Update");
+		MenuItem getUserDataItem = new MenuItem("Pending movements?");
 		getUserDataItem.addActionListener(actions.getUserDataListener);
 		popup.add(getUserDataItem);
 		
