@@ -20,6 +20,7 @@ public class HTTPConnection {
 	public String doHTTPRequest (String url) {
 		
 		StringBuilder response = new StringBuilder();
+		logger.info("trying to get RQ to: "+url);
 		
 		try {
 		    URL obj = new URL(url);

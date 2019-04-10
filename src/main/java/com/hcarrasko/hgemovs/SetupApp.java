@@ -16,6 +16,7 @@ public class SetupApp {
 	ActionsManager actions = new ActionsManager();
 	static public PopupMenu popup = new PopupMenu();
 	static public TrayIcon trayIcon = null;
+	static public boolean firstSetup = true; 
 	
 	public boolean initSystemTray() {
 
@@ -28,14 +29,9 @@ public class SetupApp {
         SystemTray tray = SystemTray.getSystemTray();
         Image image = Toolkit.getDefaultToolkit().getImage(SetupApp.class.getResource("/WhiteKnight.png"));
 
-		MenuItem getUserDataItem = new MenuItem("Pending movements?");
+		MenuItem getUserDataItem = new MenuItem("Update...");
 		getUserDataItem.addActionListener(actions.getUserDataListener);
 		popup.add(getUserDataItem);
-		
-		popup.addSeparator();
-		MenuItem goToApp = new MenuItem("Go to Chess.com");
-        goToApp.addActionListener(actions.accountingWebsiteListener);
-		popup.add(goToApp);
 		
 		MenuItem aboutItem = new MenuItem("About this app");
 		popup.add(aboutItem);
