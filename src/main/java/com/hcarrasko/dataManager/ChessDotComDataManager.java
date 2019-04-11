@@ -82,19 +82,7 @@ public class ChessDotComDataManager {
         				    +stats.getChess_blitz().getRecord().getLoss()+"-"
         				    +stats.getChess_blitz().getRecord().getDraw()
         				    +" ]", 
-        				    4);
-        		SetupApp.popup.insertSeparator(5);
-        		
-        		SetupApp.popup.insert("Go to chess.com",6);
-        		SetupApp.popup.insert("Go to chess.com/live",7);
-        		SetupApp.popup.insert("Go to chess.com/clubs/home",8);
-        		
-        		SetupApp.popup.insertSeparator(9);
-        		
-        		SetupApp.popup.insert("Go to chess-results.com",10);
-        		SetupApp.popup.insert("Go to torneos ENF",11);
-        		//https://www.ajefech.cl/ENF/torneosENF.php
-        		
+        				    4);        		
         		SetupApp.firstSetup = false;	
         }
         else {

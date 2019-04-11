@@ -35,7 +35,7 @@ public class ActionsManager {
 		}
 	};
 
-	ActionListener configure = new ActionListener() {
+	ActionListener configureListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    logger.info(" - Configure app  : started");
             String selection = JOptionPane.showInputDialog( "Who are you in chess.com?");
@@ -44,11 +44,65 @@ public class ActionsManager {
 		}
 	};
 	
-	ActionListener accountingWebsiteListener = new ActionListener() {
+	ActionListener goToChessListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 
 			try {
 				java.awt.Desktop.getDesktop().browse(new URI("http://www.chess.com"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	ActionListener gotToChessLiveListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("http://www.chess.com/live"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	ActionListener gotToChessClubsListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("http://chess.com/clubs/home"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	ActionListener gotToChessResultsListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("http://chess-results.com/fed.aspx?lan=2&fed=chi"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	ActionListener gotToChessTournamentsListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("https://www.ajefech.cl/ENF/torneosENF.php"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	ActionListener goToAboutAppListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("https://github.com/hcarrasc/Hgemoves"));
 			} catch (IOException | URISyntaxException e1) {
 				e1.printStackTrace();
 			}

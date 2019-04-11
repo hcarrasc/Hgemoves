@@ -1,7 +1,5 @@
 package com.hcarrasko.hgemovs;
 
-import com.hcarrasko.dataManager.TimerUpdater;
-
 import javax.swing.*;
 import java.awt.AWTException;
 import java.awt.Image;
@@ -33,11 +31,25 @@ public class SetupApp {
 		getUserDataItem.addActionListener(actions.getUserDataListener);
 		popup.add(getUserDataItem);
 		
-		MenuItem aboutItem = new MenuItem("About this app");
-		popup.add(aboutItem);
+		popup.insertSeparator(1);
+		popup.insert("Go to chess.com",2);
+		popup.insert("Go to chess.com/live",3);
+		popup.insert("Go to chess.com/clubs/home",4);
+		popup.insertSeparator(5);
+		popup.insert("Go to chess-results.com",6);
+		popup.insert("Go to torneos ENF",7);
+		popup.insertSeparator(8);
+		popup.insert("About this app",9);
+		
+		popup.getItem(2).addActionListener(actions.goToChessListener); 
+		popup.getItem(3).addActionListener(actions.gotToChessLiveListener);
+		popup.getItem(4).addActionListener(actions.gotToChessClubsListener);
+		popup.getItem(6).addActionListener(actions.gotToChessResultsListener);
+		popup.getItem(7).addActionListener(actions.gotToChessTournamentsListener);
+		popup.getItem(9).addActionListener(actions.goToAboutAppListener);
 
 		MenuItem configure = new MenuItem("Configure");
-        configure.addActionListener(actions.configure);
+        configure.addActionListener(actions.configureListener);
 		popup.add(configure);
 		
 		popup.addSeparator();
