@@ -8,7 +8,7 @@ Menu bar application for mac osx, which lets you know if you have pending moveme
 
 * preview 2:
 
-![alt text](http://hcarrasco.cl/apps/Hgemovs/hgemovs-menu.png)
+![alt text](http://hcarrasco.cl/apps/Hgemovs/hgemovs-prev02.png)
 
 ### Support:
 
