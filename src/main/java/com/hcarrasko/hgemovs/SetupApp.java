@@ -57,9 +57,8 @@ public class SetupApp {
 		quitItem.addActionListener(actions.quitListener);
 		popup.add(quitItem);
 		
-		trayIcon = new TrayIcon(image.getScaledInstance(20, 17, 10), "Chess.com it's your turn?", popup);
-		trayIcon.setToolTip("Stack Overflow Stats");
-		// set the TrayIcon properties
+		trayIcon = new TrayIcon(image.getScaledInstance(20, 17, 10), "Chess", popup);
+		trayIcon.setToolTip("with chess forget it");
 
 		try {
 		    tray.add(trayIcon);
