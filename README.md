@@ -1,5 +1,5 @@
 # Hgemovs
-Menu bar application for mac osx, which lets you know if you have pending movements in daily games played on Chess.com
+Menu bar application for mac, which show your stats from Chess.com and gives you easy access to useful chess resources.
 
 ### Preview:
 * preview 1:
