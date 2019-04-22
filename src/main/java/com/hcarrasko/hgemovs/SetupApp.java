@@ -27,7 +27,7 @@ public class SetupApp {
         SystemTray tray = SystemTray.getSystemTray();
         Image image = Toolkit.getDefaultToolkit().getImage(SetupApp.class.getResource("/WhiteKnight.png"));
 
-		MenuItem getUserDataItem = new MenuItem("Update...");
+		MenuItem getUserDataItem = new MenuItem("Update ...");
 		getUserDataItem.addActionListener(actions.getUserDataListener);
 		popup.add(getUserDataItem);
 		
@@ -48,7 +48,7 @@ public class SetupApp {
 		popup.getItem(7).addActionListener(actions.gotToChessTournamentsListener);
 		popup.getItem(9).addActionListener(actions.goToAboutAppListener);
 
-		MenuItem configure = new MenuItem("Configure");
+		MenuItem configure = new MenuItem("Set user");
         configure.addActionListener(actions.configureListener);
 		popup.add(configure);
 		

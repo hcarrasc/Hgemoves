@@ -57,51 +57,133 @@ public class ChessDotComDataManager {
 	
 	public void getPlayerData(String user) {
 
+		
 		logger.info("Getting info of user: "+user);
 		String requestType = "STATS";
 		String jsonData = requestData(user,requestType);
         StatsDTO stats = new Gson().fromJson(jsonData, StatsDTO.class);
         
+        requestType = "GAMES";
+        jsonData = requestData(user,requestType);
+        GamesDTO games = new Gson().fromJson(jsonData, GamesDTO.class);
+        int availableMoves = games.getGames().size();
+        
+        
         if(SetupApp.firstSetup) {
         		SetupApp.popup.getItem(0).setLabel("Update...");
         		SetupApp.popup.insertSeparator(1);
-        		SetupApp.popup.insert("DAILY ELO: "+stats.getChess_daily().getLast().getRating()+
+        		SetupApp.popup.insert("DAILY ELO:     "+stats.getChess_daily().getLast().getRating()+
         				" [ "+stats.getChess_daily().getRecord().getWin()+"-"
         				    +stats.getChess_daily().getRecord().getLoss()+"-"
         				    +stats.getChess_daily().getRecord().getDraw()
         				    +" ]", 
         				    2);
-        		SetupApp.popup.insert("BULLET ELO: "+stats.getChess_bullet().getLast().getRating()+
+        		SetupApp.popup.insert("BULLET ELO:  "+stats.getChess_bullet().getLast().getRating()+
         				" [ "+stats.getChess_bullet().getRecord().getWin()+"-"
         				    +stats.getChess_bullet().getRecord().getLoss()+"-"
         				    +stats.getChess_bullet().getRecord().getDraw()
         				    +" ]", 
         				    3);
-        		SetupApp.popup.insert("BLITZ ELO: "+stats.getChess_blitz().getLast().getRating()+
+        		SetupApp.popup.insert("BLITZ ELO:     "+stats.getChess_blitz().getLast().getRating()+
         				" [ "+stats.getChess_blitz().getRecord().getWin()+"-"
         				    +stats.getChess_blitz().getRecord().getLoss()+"-"
         				    +stats.getChess_blitz().getRecord().getDraw()
         				    +" ]", 
-        				    4);        		
+        				    4); 
+        		SetupApp.popup.insert("BLITZ RAPID: "+stats.getChess_rapid().getLast().getRating()+
+        				" [ "+stats.getChess_rapid().getRecord().getWin()+"-"
+        				    +stats.getChess_rapid().getRecord().getLoss()+"-"
+        				    +stats.getChess_rapid().getRecord().getDraw()
+        				    +" ]", 
+        				    5);  
+        		int victories = stats.getChess_daily().getRecord().getWin() +
+        				        stats.getChess_bullet().getRecord().getWin() +
+        				        stats.getChess_blitz().getRecord().getWin() +
+        				        stats.getChess_rapid().getRecord().getWin();
+        		
+        		int loses = stats.getChess_daily().getRecord().getLoss() +
+				        stats.getChess_bullet().getRecord().getLoss() +
+				        stats.getChess_blitz().getRecord().getLoss() +
+				        stats.getChess_rapid().getRecord().getLoss();
+        		
+        		int draws = stats.getChess_daily().getRecord().getDraw()+
+				        stats.getChess_bullet().getRecord().getDraw() +
+				        stats.getChess_blitz().getRecord().getDraw() +
+				        stats.getChess_rapid().getRecord().getDraw();
+        		
+        		int totalGamesPlayed = victories + loses + draws;
+        		
+        		float percentWin =  (float) (victories * 100) / totalGamesPlayed;
+        		percentWin = Math.round(percentWin * 100) / 100f;
+        		float percentLose = (float) (loses * 100) / totalGamesPlayed;
+        		percentLose = Math.round(percentLose * 100) / 100f;
+        		float percentDraw = (float) (draws * 100) / totalGamesPlayed;
+        		percentDraw = Math.round(percentDraw * 100) / 100f;
+        		
+        		logger.info(percentWin);
+        		logger.info(percentLose);
+        		logger.info(percentDraw);
+        		
+        		SetupApp.popup.insert("               ",6);
+        		SetupApp.popup.insert("DAILY GAMES WAITING: "+availableMoves,7);
+        		SetupApp.popup.insert("               ",8);
+        		SetupApp.popup.insert("TOTAL GAMES:  "+ totalGamesPlayed+" [ "+victories+"-"+loses+"-"+draws+" ]",9);
+        		SetupApp.popup.insert("W : "+percentWin+"%  -  L : "+percentLose+"%  -  D : "+percentDraw+"%",10);
+        		
         		SetupApp.firstSetup = false;	
         }
         else {
-	        	SetupApp.popup.getItem(2).setLabel("DAILY ELO: "+stats.getChess_daily().getLast().getRating()+
+	        	SetupApp.popup.getItem(2).setLabel("DAILY ELO:        "+stats.getChess_daily().getLast().getRating()+
 	    				" [ "+stats.getChess_daily().getRecord().getWin()+"-"
 	    				    +stats.getChess_daily().getRecord().getLoss()+"-"
 	    				    +stats.getChess_daily().getRecord().getDraw()
 	    				    +" ]");
-	    		SetupApp.popup.getItem(3).setLabel("BULLET ELO: "+stats.getChess_bullet().getLast().getRating()+
+	    		SetupApp.popup.getItem(3).setLabel("BULLET ELO:     "+stats.getChess_bullet().getLast().getRating()+
 	    				" [ "+stats.getChess_bullet().getRecord().getWin()+"-"
 	    				    +stats.getChess_bullet().getRecord().getLoss()+"-"
 	    				    +stats.getChess_bullet().getRecord().getDraw()
 	    				    +" ]");
-	    		SetupApp.popup.getItem(4).setLabel("BLITZ ELO: "+stats.getChess_blitz().getLast().getRating()+
+	    		SetupApp.popup.getItem(4).setLabel("BLITZ ELO:        "+stats.getChess_blitz().getLast().getRating()+
 	    				" [ "+stats.getChess_blitz().getRecord().getWin()+"-"
 	    				    +stats.getChess_blitz().getRecord().getLoss()+"-"
 	    				    +stats.getChess_blitz().getRecord().getDraw()
 	    				    +" ]");
-        }
+	    		SetupApp.popup.getItem(5).setLabel("BLITZ RAPID ELO: "+stats.getChess_rapid().getLast().getRating()+
+        				" [ "+stats.getChess_rapid().getRecord().getWin()+"-"
+        				    +stats.getChess_rapid().getRecord().getLoss()+"-"
+        				    +stats.getChess_rapid().getRecord().getDraw()
+        				    +" ]"); 
+        		int victories = stats.getChess_daily().getRecord().getWin() +
+				        stats.getChess_bullet().getRecord().getWin() +
+				        stats.getChess_blitz().getRecord().getWin() +
+				        stats.getChess_rapid().getRecord().getWin();
+		
+			int loses = stats.getChess_daily().getRecord().getLoss() +
+			        stats.getChess_bullet().getRecord().getLoss() +
+			        stats.getChess_blitz().getRecord().getLoss() +
+			        stats.getChess_rapid().getRecord().getLoss();
+			
+			int draws = stats.getChess_daily().getRecord().getDraw()+
+			        stats.getChess_bullet().getRecord().getDraw() +
+			        stats.getChess_blitz().getRecord().getDraw() +
+			        stats.getChess_rapid().getRecord().getDraw();
+			
+			int totalGamesPlayed = victories + loses + draws;
+			
+			float percentWin =  (float) (victories * 100) / totalGamesPlayed;
+			percentWin = Math.round(percentWin * 100) / 100f;
+			float percentLose = (float) (loses * 100) / totalGamesPlayed;
+			percentLose = Math.round(percentLose * 100) / 100f;
+			float percentDraw = (float) (draws * 100) / totalGamesPlayed;
+			percentDraw = Math.round(percentDraw * 100) / 100f;
+			
+			logger.info(percentWin);
+			logger.info(percentLose);
+			logger.info(percentDraw);
+    		    SetupApp.popup.getItem(7).setLabel("DAILY GAMES WAITING: "+availableMoves);
+			SetupApp.popup.getItem(9).setLabel("TOTAL GAMES:  "+ totalGamesPlayed+" [ "+victories+"-"+loses+"-"+draws+" ]");
+			SetupApp.popup.getItem(10).setLabel("W : "+percentWin+"%  -  L : "+percentLose+"%  -  D : "+percentDraw+"%");
+	    }
        
 	}
 
