@@ -8,7 +8,7 @@ Menu bar application for mac, which show your stats from Chess.com and gives you
 
 * preview 2:
 
-![alt text](http://hcarrasco.cl/apps/Hgemovs/hgemovs-prev02.png)
+![alt text](http://hcarrasco.cl/apps/Hgemovs/hgemovs-prev03.png)
 
 ### Support:
 
