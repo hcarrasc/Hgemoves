@@ -276,8 +276,8 @@ public class StatsDTO {
 		int win;
 		int loss;
 		int draw;
-		int time_per_move;
-		int timeout_percent;
+		float time_per_move;
+		float timeout_percent;
 		
 		public int getWin() {
 			return win;
@@ -297,16 +297,16 @@ public class StatsDTO {
 		public void setDraw(int draw) {
 			this.draw = draw;
 		}
-		public int getTime_per_move() {
+		public float getTime_per_move() {
 			return time_per_move;
 		}
 		public void setTime_per_move(int time_per_move) {
 			this.time_per_move = time_per_move;
 		}
-		public int getTime_percent() {
+		public float getTime_percent() {
 			return timeout_percent;
 		}
-		public void setTime_percent(int timeout_percent) {
+		public void setTime_percent(float timeout_percent) {
 			this.timeout_percent = timeout_percent;
 		}
 	}
