@@ -1,6 +1,7 @@
 package com.hcarrasko.dataManager;
 
 import com.google.gson.Gson;
+import com.hcarrasko.hgemovs.ActionsManager;
 import com.hcarrasko.hgemovs.SetupApp;
 import com.hcarrasko.httpManager.HTTPConnection;
 import com.hcarrasko.model.GamesDTO;
@@ -8,7 +9,11 @@ import com.hcarrasko.model.StatsDTO;
 
 import org.apache.log4j.Logger;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class ChessDotComDataManager {
 	
@@ -130,7 +135,8 @@ public class ChessDotComDataManager {
         		SetupApp.popup.insert("TOTAL GAMES:  "+ totalGamesPlayed+" [ "+victories+"-"+loses+"-"+draws+" ]",9);
         		SetupApp.popup.insert("W : "+percentWin+"%  -  L : "+percentLose+"%  -  D : "+percentDraw+"%",10);
         		
-        		SetupApp.firstSetup = false;	
+        		SetupApp.firstSetup = false;
+        		SetupApp.popup.getItem(7).addActionListener(goToDailyChessListener);
         }
         else {
 	        	SetupApp.popup.getItem(2).setLabel("DAILY ELO:        "+stats.getChess_daily().getLast().getRating()+
@@ -180,7 +186,7 @@ public class ChessDotComDataManager {
 			logger.info(percentWin);
 			logger.info(percentLose);
 			logger.info(percentDraw);
-    		    SetupApp.popup.getItem(7).setLabel("DAILY GAMES WAITING: "+availableMoves);
+    		SetupApp.popup.getItem(7).setLabel("DAILY GAMES WAITING: "+availableMoves);
 			SetupApp.popup.getItem(9).setLabel("TOTAL GAMES:  "+ totalGamesPlayed+" [ "+victories+"-"+loses+"-"+draws+" ]");
 			SetupApp.popup.getItem(10).setLabel("W : "+percentWin+"%  -  L : "+percentLose+"%  -  D : "+percentDraw+"%");
 	    }
@@ -222,5 +228,15 @@ public class ChessDotComDataManager {
 			}
 		}
 	}
+	
+	ActionListener goToDailyChessListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("https://www.chess.com/daily"));
+			} catch (IOException | URISyntaxException e1) {
+				e1.printStackTrace();
+			}
+        }
+	};
 
 }
